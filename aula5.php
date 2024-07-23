@@ -58,3 +58,28 @@ echo "A soma de 1 até 100 é " . $soma; //5050
     Soma Impares = ?
 
 */
+
+<?php
+// Inicializa as variáveis para as somas
+$somaPares = 0;
+$somaImpares = 0;
+
+// Inicializa o contador
+$i = 1;
+
+// Usa um laço while para iterar de 1 a 100
+while ($i <= 100) {
+    // Verifica se o número é par
+    if ($i % 2 == 0) {
+        $somaPares += $i;
+    } else { // Se não for par, é ímpar
+        $somaImpares += $i;
+    }
+    // Incrementa o contador
+    $i++;
+}
+
+// Exibe os resultados
+echo "Soma Pares = " . $somaPares . "<br>";
+echo "Soma Impares = " . $somaImpares;
+?>
