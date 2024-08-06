@@ -1,0 +1,58 @@
+<?php
+// Comentário: Declaração de variáveis
+$vetor = array();  // Declara um array vazio chamado $vetor (não está sendo utilizado no código atual).
+$vetorPar = [];  // Declara um array vazio chamado $vetorPar para armazenar os números pares.
+$vetorImpar = [];  // Declara um array vazio chamado $vetorImpar para armazenar os números ímpares.
+$somaDosPares = 0;  // Inicializa a variável $somaDosPares com 0 para armazenar a soma dos números pares.
+$somaDosImpares = 0;  // Inicializa a variável $somaDosImpares com 0 para armazenar a soma dos números ímpares.
+
+// Loop para preencher os arrays $vetorPar e $vetorImpar
+for ($i = 1; $i < 100; $i++) {
+    if ($i % 2 == 0) {  // Verifica se o número atual é par
+        $somaDosPares += $i;  // Adiciona o número par à soma dos números pares
+        $vetorPar[] = $i;  // Adiciona o número par ao array $vetorPar
+    } else {  // Caso contrário, o número é ímpar
+        $somaDosImpares += $i;  // Adiciona o número ímpar à soma dos números ímpares
+        $vetorImpar[] = $i;  // Adiciona o número ímpar ao array $vetorImpar
+    }
+}
+
+// Ordenar o array $vetorPar em ordem decrescente usando Selection Sort
+for ($i = 0; $i < count($vetorPar) - 1; $i++) {
+    $max_idx = $i;  // Inicializa o índice do maior valor como o índice atual
+    for ($j = $i + 1; $j < count($vetorPar); $j++) {
+        if ($vetorPar[$j] > $vetorPar[$max_idx]) {  // Verifica se o elemento atual é maior que o elemento máximo conhecido
+            $max_idx = $j;  // Atualiza o índice do máximo com o índice atual
+        }
+    }
+    // Troca o elemento máximo encontrado com o elemento no índice inicial não ordenado
+    $temp = $vetorPar[$max_idx];
+    $vetorPar[$max_idx] = $vetorPar[$i];
+    $vetorPar[$i] = $temp;
+}
+
+// Ordenar o array $vetorImpar em ordem decrescente usando Selection Sort
+for ($i = 0; $i < count($vetorImpar) - 1; $i++) {
+    $max_idx = $i;  // Inicializa o índice do maior valor como o índice atual
+    for ($j = $i + 1; $j < count($vetorImpar); $j++) {
+        if ($vetorImpar[$j] > $vetorImpar[$max_idx]) {  // Verifica se o elemento atual é maior que o elemento máximo conhecido
+            $max_idx = $j;  // Atualiza o índice do máximo com o índice atual
+        }
+    }
+    // Troca o elemento máximo encontrado com o elemento no índice inicial não ordenado
+    $temp = $vetorImpar[$max_idx];
+    $vetorImpar[$max_idx] = $vetorImpar[$i];
+    $vetorImpar[$i] = $temp;
+}
+
+// Imprimir os elementos do array $vetorPar em ordem decrescente
+for ($i = 0; $i < count($vetorPar); $i++) { 
+    echo $vetorPar[$i] . ", ";
+}
+echo "\n";  // Adiciona uma nova linha ao final da impressão dos números pares
+
+// Imprimir os elementos do array $vetorImpar em ordem decrescente
+for ($i = 0; $i < count($vetorImpar); $i++) {
+    echo $vetorImpar[$i] . ", ";
+}
+?>
