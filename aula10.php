@@ -9,7 +9,7 @@
  * Sugestao/Dica para o nome da funcao: isValidCPF, isValidCNPJ.
  * CPF: "00000000000" - 11 digitos
  * CNPJ: "00000000000000" - 14 digitos
- * 
+ * Criar mascara para número de telefone
 */
 
 /**
