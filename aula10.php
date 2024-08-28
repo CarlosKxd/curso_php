@@ -12,31 +12,64 @@
  * 
 */
 
-function isValidCPF($cpf) {
-    $padrao = "/^[0-9]*$/";
-    $cpf = preg_replace($padrao, "", $cpf);
+/**
+ * CPF: "491.582.630-98"
+ * CPF: "###.###.###-##" 14
+ * CPF: "49158263098" 11
+ */
+function addMaskCPF($cpf) {
+    $cpfMascarado = "";
+    $maskCPF = "###.###.###-##";
 
-    // codigo aqui
+    $j = 0;
 
-    return true;
+    for ($i = 0; $i < strlen($maskCPF); $i++) {
+        if ($maskCPF[$i] == '#') {
+            $cpfMascarado .= $cpf[$j]; // Adiciona o dígito do CPF
+            $j++;
+        } else {
+            $cpfMascarado .= $maskCPF[$i]; // Adiciona o caractere da máscara
+        }
+    }
+
+    return $cpfMascarado;
 }
 
-function isValidCNPJ($cnpj) {
-    $padrao = "/^[0-9]*$/";
-    $cnpj = preg_replace($padrao, "", $cnpj);
+function validaCPF($cpf) {
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
-    // codigo aqui
+    // Verifica se foi informado todos os dígitos corretamente
+    if (strlen($cpf) != 11) {
+        return false;
+    }
 
+    // Verifica se foi informada uma sequência de dígitos repetidos
+    if (preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    // Faz o cálculo para validar o CPF
+    for ($t = 9; $t < 11; $t++) {
+        for ($d = 0, $c = 0; $c < $t; $c++) {
+            $d += $cpf[$c] * (($t + 1) - $c);
+        }
+        $d = ((10 * $d) % 11) % 10;
+        if ($cpf[$c] != $d) {
+            return false;
+        }
+    }
     return true;
 }
 
 $cpf = "491.582.630-98";
 
+$cpfValido = validaCPF($cpf);
+$cpf = preg_replace('/[^0-9]/', '', $cpf);
 
-$cpfValido = isValidCPF($cpf);
+$cpf = addMaskCPF($cpf);
 
 if ($cpfValido) {
-    echo "O CPF: $cpf é Valido.";
+    echo "O CPF: $cpf é Válido.";
 } else {
-    echo "O CPF: $cpf é Invalido.";
+    echo "O CPF: $cpf é Inválido.";
 }
