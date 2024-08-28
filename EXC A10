@@ -1,0 +1,4 @@
+<?php
+// Criar mascara número telefone
+
+$maskCELL = "(##) # #### ###"
