@@ -18,12 +18,13 @@
  * CPF: "49158263098" 11
  */
 function addMaskCPF($cpf) {
+
     $cpfMascarado = "";
     $maskCPF = "###.###.###-##";
-
     $j = 0;
 
-    for ($i = 0; $i < strlen($maskCPF); $i++) {
+    for ($i = 0; $i < strlen($maskCPF); $i++){
+
         if ($maskCPF[$i] == '#') {
             $cpfMascarado .= $cpf[$j]; // Adiciona o dígito do CPF
             $j++;
